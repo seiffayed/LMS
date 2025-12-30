@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, ttk, simpledialog
 from .base_window import BaseWindow
-from config import MAROON, BROWN, GREEN, RED, FONT
+from color import MAROON, BROWN, GREEN, RED, FONT
 from models.course_models import Course
 from models.report_models import UserReport, CourseReport
 
