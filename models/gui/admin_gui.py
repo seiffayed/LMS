@@ -5,6 +5,7 @@ from color import MAROON, BROWN, GREEN, RED, FONT
 from models.course_models import Course
 from models.report_models import UserReport, CourseReport
 
+
 class AdminDashboard(BaseWindow):
     def __init__(self, user, lms):
         self.user, self.lms = user, lms
