@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
-from utils import Validator
+from validators import Validator
 
 class PrivateMessage:
     def __init__(self, sender_name, subject, body):

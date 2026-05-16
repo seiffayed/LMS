@@ -23,7 +23,7 @@ class DatabaseManager:
         self.connect()
         cursor = self.conn.cursor()
         
-        # Enable foreign keys
+        
         cursor.execute("PRAGMA foreign_keys = ON;")
 
         # Users
@@ -161,9 +161,11 @@ class DatabaseManager:
         cursor = self.conn.cursor()
         
         # Clear all tables
-        tables = ["users", "courses", "enrollments", "assignments", "assignment_grades",
-                  "materials", "quizzes", "quiz_attempts", "submissions", "messages", 
-                  "notifications", "logs", "announcements"]
+        tables = [
+            "users", "courses", "enrollments", "assignments", "assignment_grades",
+            "materials", "submissions", "messages", 
+            "notifications", "logs", "announcements"
+        ]
         for t in tables:
             cursor.execute(f"DELETE FROM {t}")
         
