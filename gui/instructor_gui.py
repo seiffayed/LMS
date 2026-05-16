@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, ttk, simpledialog, filedialog
+from tkinter import messagebox, ttk, filedialog
 from datetime import datetime
 from .base_window import BaseWindow
 from color import MAROON, BROWN, GREEN, RED, FONT

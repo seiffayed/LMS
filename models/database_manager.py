@@ -1,5 +1,4 @@
 import sqlite3
-import json
 from .user_models import Admin, Instructor, Student, PrivateMessage
 from .course_models import Course
 from .content_models import Assignment, LectureMaterial, Submission
@@ -18,6 +17,7 @@ class DatabaseManager:
     def close(self):
         if self.conn:
             self.conn.close()
+            self.conn = None
 
     def create_tables(self):
         self.connect()
@@ -160,11 +160,11 @@ class DatabaseManager:
         self.connect()
         cursor = self.conn.cursor()
         
-        # Clear all tables
+        # Clear child tables before parent tables to satisfy foreign-key constraints.
         tables = [
-            "users", "courses", "enrollments", "assignments", "assignment_grades",
-            "materials", "submissions", "messages", 
-            "notifications", "logs", "announcements"
+            "assignment_grades", "submissions", "materials", "assignments",
+            "announcements", "enrollments", "messages", "notifications",
+            "logs", "courses", "users"
         ]
         for t in tables:
             cursor.execute(f"DELETE FROM {t}")

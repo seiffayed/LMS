@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, ttk, simpledialog
+from tkinter import messagebox, ttk
 import os
 from .base_window import BaseWindow
 from color import MAROON, BROWN, GREEN, RED, FONT

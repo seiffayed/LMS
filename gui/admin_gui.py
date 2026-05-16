@@ -1,9 +1,9 @@
 import tkinter as tk
-from tkinter import messagebox, ttk, simpledialog
+from tkinter import messagebox, ttk
 from .base_window import BaseWindow
 from color import MAROON, BROWN, GREEN, RED, FONT
 from models.course_models import Course
-from models.report_models import UserReport, CourseReport
+from models.report_models import UserReport
 
 class AdminDashboard(BaseWindow):
     def __init__(self, user, lms):

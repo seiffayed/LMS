@@ -1,158 +1,194 @@
-1- PROJECT DESCRIPTION:
-This LMS is designed by python to bridge the gap between educators and learners. It provides a centralized platform where an admin manages the system, instructors post content and evaluate performance, and students engage with materials and track their academic progress. The application ensures data persistence using a local SQLite database, allowing users to pick up exactly where they left off.
+# Learning Management System 🎓
 
-2- FEATURES:
-User Authentication & Security:
-- Role-Based Access Control: Separate dashboards for Admin, Instructor, and Student.
-- Validation: Regex-based email validation (strictly @gmail.com) and password strength checks.
-- Secure Storage: User credentials and system state are managed through a persistent SQLite backend.
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
+![Tkinter](https://img.shields.io/badge/GUI-Tkinter-green?style=for-the-badge)
+![SQLite](https://img.shields.io/badge/Database-SQLite-lightgrey?style=for-the-badge&logo=sqlite)
 
-Administrator Dashboard
-- System Overview: Real-time statistics on total users, courses, and students.
-- User Management: Ability to view and remove users from the system.
-- Course Management: Create new courses and assign them to specific instructors.
-- Security Logs: View a detailed history of all system events and logins.
-- Reports Center: Generate automated User Audit reports.
+Learning Management System is a desktop-based LMS built with Python, Tkinter, and SQLite. It was developed as a university course graduation project and provides separate workflows for admins, instructors, and students in one local application.
 
-Instructor Dashboard
-- Content Creation: Upload lecture materials (supports PDF/File attachments) and post announcements.
-- Assignment Management: Create tasks with maximum marks.
-- Grading Center: Review student submissions and assign grades with automated notifications.
-- Academic Reporting: Generate detailed individual progress reports for students, including assignment averages and performance.
+The project focuses on core LMS concepts: user authentication, role-based dashboards, course management, classroom enrollment, learning materials, assignments, grading, reports, notifications, messages, and local data persistence.
 
-Student Dashboard
-- Enrollment: Browse the course catalog and join classrooms.
-- Digital Classroom: Access notice boards, view study materials, and view assignment details.
-- Task Submission: Submit work directly through the interface.
-- Notifications: Get instant alerts for new materials, assignments, and grades.
+## 📸 Screenshots
 
-Communication System
-- Private Messaging: Integrated inbox for all users to send and receive messages.
-- Read/Unread Status: Track message status.
+### General
 
-Technical Architecture
-- GUI: Built using tkinter and ttk for a modern, responsive feel.
-- Database: sqlite3 for local data persistence.
-- Design includes:
-Inheritance: Admin, Instructor, and Student inherit from a User base class.
-Abstraction: Uses Abstract Base Classes (ABC) for reports and content models.
-Encapsulation: Private attributes such as in (__password, __grades).
+| Login | Create Account |
+| --- | --- |
+| <img src="images/LOGIN.png" alt="Login screen" width="360"> | <img src="images/CREATE%20USER.png" alt="Create account screen" width="360"> |
 
-3- HOW TO RUN THE PROJECT:
-Prerequisites:
-- Python installed on your machine.
-- Tkinter (usually comes pre-installed with Python, but Linux users may need to install python3-tk).
+### Admin Dashboard
 
-Steps to Run:
-- Clone the Repository:
+| System Overview | User Management |
+| --- | --- |
+| <img src="images/admin/ADMIN%20DASHBOARD%20AND%20SYSTEM%20OVERVIEW.png" alt="Admin dashboard and system overview" width="360"> | <img src="images/admin/USER%20MANAGEMENT.png" alt="User management screen" width="360"> |
+
+| Course Management | Course Analysis |
+| --- | --- |
+| <img src="images/admin/COURSE%20MANAGEMENT.png" alt="Course management screen" width="360"> | <img src="images/admin/COURSE%20ANALYSIS.png" alt="Course analysis screen" width="360"> |
+
+| Management Reports | Security Logs |
+| --- | --- |
+| <img src="images/admin/MANAGEMENT%20REPORTS.png" alt="Management reports screen" width="360"> | <img src="images/admin/SECURITY%20LOGS.png" alt="Security logs screen" width="360"> |
+
+### Instructor Dashboard
+
+| Manage Courses | Add Material |
+| --- | --- |
+| <img src="images/INSTRUCTOR/MANAGE%20COURSES.png" alt="Instructor manage courses screen" width="360"> | <img src="images/INSTRUCTOR/ADD%20MATERIAL.png" alt="Add material screen" width="360"> |
+
+| Add Assignment | Grading Center |
+| --- | --- |
+| <img src="images/INSTRUCTOR/ADD%20ASSIGNMENT.png" alt="Add assignment screen" width="360"> | <img src="images/INSTRUCTOR/GRADING%20CENTER.png" alt="Grading center screen" width="360"> |
+
+| Announcements |
+| --- |
+| <img src="images/INSTRUCTOR/ANNOUNCEMENTS.png" alt="Announcements screen" width="360"> |
+
+### Student Dashboard
+
+| My Classrooms | Enroll Courses |
+| --- | --- |
+| <img src="images/student/MY%20CLASSROOMS.png" alt="Student classrooms screen" width="360"> | <img src="images/student/ENROLL%20COURSES.png" alt="Enroll courses screen" width="360"> |
+
+| Inbox | Messages |
+| --- | --- |
+| <img src="images/student/INBOX.png" alt="Student inbox screen" width="360"> | <img src="images/student/MESSAGES.png" alt="Student messages screen" width="360"> |
+
+## ✨ Features
+
+### Authentication and Roles
+
+- Login with stored local user accounts.
+- Create new Student or Instructor accounts.
+- Validate Gmail addresses and minimum password length.
+- Route each user to a dedicated dashboard based on role.
+
+### Admin
+
+- View system statistics for users, courses, and students.
+- Manage users and remove non-admin accounts.
+- Create and delete courses.
+- Assign courses to instructors.
+- Review system security logs.
+- View global course analytics.
+- Generate user audit reports.
+
+### Instructor
+
+- View assigned courses.
+- Upload lecture materials with optional file attachments.
+- Create assignments with deadlines and max marks.
+- Post course announcements.
+- Review pending student submissions.
+- Assign grades and notify students.
+- Send and receive private messages.
+- Generate individual student progress reports.
+
+### Student
+
+- Browse available courses.
+- Enroll in classrooms.
+- Open classroom tabs for announcements, materials, and assignments.
+- Submit assignment work.
+- View grades after instructor evaluation.
+- Receive notifications.
+- Send and receive private messages.
+
+### Data Persistence
+
+- Store users, courses, enrollments, materials, assignments, submissions, messages, notifications, announcements, logs, and grades in `lms_data.db`.
+- Rebuild default accounts and starter data when the database is empty.
+
+## 🛠️ Tech Stack
+
+- **Python** - core programming language
+- **Tkinter / ttk** - desktop GUI
+- **SQLite** - local database persistence
+- **ABC / OOP** - abstract reports/content models, inherited user roles, and encapsulated user data
+
+## ⚙️ How It Works
+
+1. The app starts from `main.py` and creates one shared `LMS` system object.
+2. `LMS` loads users, courses, messages, submissions, and logs from SQLite.
+3. Users log in through the authentication window.
+4. The app opens the correct dashboard for Admin, Instructor, or Student.
+5. Each dashboard updates the shared LMS state.
+6. Changes are saved back to `lms_data.db`.
+
+## 🔐 Default Accounts
+
+| Role | Username | Password |
+| --- | --- | --- |
+| Admin | `admin` | `admin123` |
+| Instructor | `pro` | `pro123` |
+| Student | `student` | `stud123` |
+
+## 📦 Installation
+
+### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/ShahdHamdy386/LMS_.git
+git clone https://github.com/seiffayed/LMS.git
+cd LMS
 ```
-- Navigate to the Project Directory:
-```bash
-cd LMS_
-```
-- Run the Application:
+
+### 2. Run the App
+
+Tkinter and SQLite are included with most Python installations, so no third-party packages are required.
+
 ```bash
 python main.py
 ```
 
-Default Credentials (for first-time boot):
-- Admin: Username: admin | Password: admin123
-- Instructor: Username: pro | Password: pro123
-- Student: Username: student | Password: stud123
+## 📁 Project Structure
 
-4- SCREEN SHOTS:
-GENERAL: 
-- login gui
-![login gui](images/LOGIN.png)
+```text
+LMS/
+|-- gui/
+|   |-- admin_gui.py
+|   |-- auth_gui.py
+|   |-- base_window.py
+|   |-- instructor_gui.py
+|   `-- student_gui.py
+|-- images/
+|   |-- admin/
+|   |-- INSTRUCTOR/
+|   `-- student/
+|-- models/
+|   |-- abc_models.py
+|   |-- content_models.py
+|   |-- course_models.py
+|   |-- database_manager.py
+|   |-- lms_system.py
+|   |-- report_models.py
+|   `-- user_models.py
+|-- color.py
+|-- validators.py
+|-- main.py
+|-- lms_data.db
+|-- README.md
+`-- .gitignore
+```
 
-- create user
-![create user](images/CREATE%20USER.png)
+## 🧱 Architecture Notes
 
-ADMIN:
-- admin dashboard and system overview
-![admin dashboard and system overview](images/admin/ADMIN%20DASHBOARD%20AND%20SYSTEM%20OVERVIEW.png)
+- **Role inheritance:** `Admin`, `Instructor`, and `Student` inherit from a shared `User` base class.
+- **Abstraction:** reports and content models use abstract base classes.
+- **Encapsulation:** sensitive fields such as passwords and assignment grades are stored as private attributes.
+- **Persistence layer:** `DatabaseManager` handles SQLite table creation, saving, and loading.
+- **GUI separation:** each role has its own Tkinter dashboard module.
 
-- course analysis
-![course analysis](images/admin/COURSE%20ANALYSIS.png)
+## 👥 Team Members
 
-- course management
-![course management](images/admin/COURSE%20MANAGEMENT.png)
+| Member | ID | Main Contribution |
+| --- | --- | --- |
+| Shahd Hamdy | 120230070 | Database management and main app setup |
+| Ahmed Osama | 120230014 | Instructor GUI |
+| Hala Mostafa | 120230148 | Student GUI |
+| Seif Fayed | 120230091 | Admin GUI and report models |
+| Marisia Michael | 120230233 | Colors, validation, base window, LMS system, auth GUI |
+| Mariam Gamal | 120230012 | ABC models, content models, user models, course models |
 
-- management reports
-![management reports](images/admin/MANAGEMENT%20REPORTS.png)
+## 📌 Notes
 
-- security logs
-![security logs](images/admin/SECURITY%20LOGS.png)
-
-STUDENT:
-- enroll courses
-![enroll courses](images/student/ENROLL%20COURSES.png)
-
-- inbox
-![inbox](images/student/INBOX.png)
-
-- messages
-![messages](images/student/MESSAGES.png)
-
-- my classrooms
-![my classrooms](images/student/MY%20CLASSROOMS.png)
-
-INSTRUCTOR:
-- add assignment
-![add assignment](images/INSTRUCTOR/ADD%20ASSIGNMENT.png)
-
-- add material
-![add material](images/INSTRUCTOR/ADD%20MATERIAL.png)
-
-- announcements 
-![announcements](images/INSTRUCTOR/ANNOUNCEMENTS.png)
-
-- grading center 
-![grading center](images/INSTRUCTOR/GRADING%20CENTER.png)
-
-- manage courses
-![manage courses](images/INSTRUCTOR/MANAGE%20COURSES.png)
-
-5- TEAM MEMBERS AND CONTRIBUTIONS:
-
-MEMBER 1:
-- Shahd Hamdy - 120230070  
-- data base management, main 
-- code files: models/database_manager.py , main.py
-
-MEMBER 2: 
-- Ahmed Osama - 120230014
-- instructor GUI
-- code files: gui/instructor_gui.py
-
-MEMBER 3: 
-- Hala Mostafa - 120230148
-- student GUI
-- code files: gui/student_gui.py
-
-MEMBER 4: 
-- Seif Fayed - 120230091
-- admin GUI, report models
-- code files: gui/admin_gui.py , models/report_models.py
-
-MEMBER 5: 
-- Marisia Michael - 120230233
-- colors, validators, base window, lms system, register and login GUI
-- code files: color.py , validators.py , gui/base_window.py , models/lms_system.py , gui/auth_gui.py
-
-MEMBER 6: 
-- Mariam Gamal - 120230012
-- abc models , content models , user models , course models
-- code files: models/abc_models.py , models/content_models.py , models/user_models.py , models/course_models.py
-
-6- ADDITIONAL NOTES:
-- Data Storage: 
-All data is saved in a file named lms_data.db. If this file is deleted, the system will re-initialize with default accounts.
-
-Dependencies
-- sqlite3 (Built-in)
-- tkinter (Built-in)
-- re (For email validation)
-
+This was built as an academic project, so it is intentionally local-first and lightweight. It is suitable for demonstrating Python OOP, GUI development, SQLite persistence, and LMS workflow design.

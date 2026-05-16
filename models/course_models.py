@@ -1,5 +1,3 @@
-from datetime import datetime
-
 class Course:
     def __init__(self, cid, title, instructor):
         self.cid = cid
